@@ -1,0 +1,18 @@
+my-express-app/
+├── app.js                 ← 진입점 (Express 앱 설정)
+├── routes/
+│   └── userRoutes.js      ← 라우터 정의 (Controller 연결)
+├── controllers/
+│   └── userController.js  ← 요청 처리 로직
+├── services/
+│   └── userService.js     ← 비즈니스 로직
+├── repositories/
+│   └── userRepository.js  ← DB 접근 (예: MongoDB, MySQL)
+├── models/
+│   └── userModel.js       ← 데이터 모델 (ORM, 스키마 등)
+├── config/
+│   └── db.js              ← DB 설정 파일
+├── middlewares/
+│   └── authMiddleware.js  ← 미들웨어 (인증 등)
+└── utils/
+    └── logger.js          ← 공용 유틸 함수 (로깅 등)
