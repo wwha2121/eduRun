@@ -1,22 +1,14 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express();
-const port = 3000;
+const signupRoutes = require('./routes/signupRoutes');
+const loginRoutes = require('./routes/loginRoutes');
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.use('/', signupRoutes);
+app.use('/', loginRoutes);
 
-// 간단한 POST 로그인 API
-app.post('/login', (req, res) => {
-    const { username, password } = req.body;
-
-    if (username === 'admin' && password === '1234') {
-        res.json({ message: '로그인 성공!', token: 'fake-jwt-token' });
-    } else {
-        res.status(401).json({ message: '로그인 실패' });
-    }
-});
-
-app.listen(port, () => {
-    console.log(`서버가 http://localhost:${port} 에서 실행 중입니다`);
+// 하나의 app.listen만 사용!
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`서버가 http://localhost:${PORT} 에서 실행 중입니다`);
 });
