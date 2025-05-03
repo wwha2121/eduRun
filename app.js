@@ -2,11 +2,14 @@ const express = require('express');
 const app = express();
 const signupRoutes = require('./routes/signupRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+const requestProblemRoutes = require('./routes/requestProblemRoutes');
+const answerProblemRoutes = require('./routes/answerProblemRoutes');
 
 app.use(express.json());
 app.use('/', signupRoutes);
 app.use('/', loginRoutes);
-
+app.use('/', requestProblemRoutes);
+app.use('/', answerProblemRoutes);
 // 하나의 app.listen만 사용!
 const PORT = 3000;
 app.listen(PORT, () => {

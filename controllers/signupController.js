@@ -3,6 +3,7 @@ const signUpService = require('../services/signupService');
 exports.createUser = async (req, res) => {
     try {
         const { username, password } = req.body;
+        console.log(username);
 
         const signUpService = require('../services/signupService');
         const newUser = await signUpService.createUser({ username, password });

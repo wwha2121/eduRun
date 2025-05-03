@@ -2,7 +2,10 @@
 const User = require('../models/userModel');
 
 const signupRepository = {
-    createUser: async (userData) => {
+    createUser: async ({ username, password }) => {
+        console.log(username);
+        console.log(password);
+
         return await User.create({ username, password });
     },
 
