@@ -1,15 +1,28 @@
-// const { DataTypes } = require('sequelize');
-// const sequelize = require('../config/db'); // DB 연결 인스턴스
+// models/userItemModel.js
+module.exports = (sequelize, DataTypes) => {
+    const UserItem = sequelize.define(
+        'UserItem',
+        {
+            user_id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                allowNull: false,
+            },
+            item_id: {
+                type: DataTypes.INTEGER,
+                primaryKey: true,
+                allowNull: false,
+            },
+            count: {
+                type: DataTypes.INTEGER,
+                defaultValue: 1,
+            },
+        },
+        {
+            tableName: 'UserItem',
+            timestamps: false,
+        }
+    );
 
-// const ItemModel = sequelize.define(
-//     'ItemModel ',
-//     {
-     
-
-
-// },{
-//         tableName: 'User', // 실제 DB 테이블 이름 지정
-//         timestamps: false, // createdAt, updatedAt 안 쓰면 false
-// });
-
-// module.exports = Item;
+    return UserItem;
+};

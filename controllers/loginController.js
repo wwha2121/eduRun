@@ -18,3 +18,4 @@ exports.validateLogin = async (req, res) => {
         res.status(500).json({ message: '로그인 오류' });
     }
 };
+

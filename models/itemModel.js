@@ -23,7 +23,7 @@ const Item = sequelize.define(
         },
     },
     {
-        tableName: 'User', // 실제 DB 테이블 이름 지정
+        tableName: 'Item', // 실제 DB 테이블 이름 지정
         timestamps: false, // createdAt, updatedAt 안 쓰면 false
     }
 );
