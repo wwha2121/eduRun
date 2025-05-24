@@ -7,10 +7,10 @@ exports.createUser = async (req, res) => {
 
         const signUpService = require('../services/signupService');
         const newUser = await signUpService.createUser({ username, password });
+        // console.log('User signup:', newUser.toJSON());
+        console.log('User signup:');
 
-        console.log('User signup:', newUser.toJSON());
-
-        res.status(201).json({ message: '회원가입 성공', user: newUser });
+        res.status(201).json({ message: '회원가입 성공'});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: '회원가입 실패', error: err.message });

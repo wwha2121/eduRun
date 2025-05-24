@@ -10,7 +10,11 @@ const UserItem = require('../models/userItemModel')(sequelize, DataTypes);
 
 exports.buyItem = async (req, res) => {
     console.log(req.body);
-    const { id: id, name: name } = req.body;
+    const { userId: id, itemName: name} = req.body;
+    // console.log(itemName);
+    // console.log(userId);
+    
+    
 
     try {
         // 아이템 정보 가져오기

@@ -7,7 +7,8 @@ exports.validateLogin = async (req, res) => {
 
     try {
         const UserInfo = await loginService.validateLogin({ username, password });
-
+	console.log(UserInfo);
+	    console.log(UserInfo);
         if (UserInfo) {
             console.log('User login Success', req.body);
             res.status(200).send(username);
