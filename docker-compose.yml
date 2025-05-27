@@ -1,17 +1,17 @@
 version: '3.8'
 
 services:
-    app: # ✅ 반드시 services 밑에 있어야 함
+    app:
         build: .
         ports:
-            - '3000:3000'
+            - '80:80'
+            - '443:443'
+        volumes:
+            - /etc/letsencrypt:/etc/letsencrypt:ro # 인증서 읽기 전용 공유
         depends_on:
             - db
         env_file:
             - .env
-        volumes:
-            - .:/app
-
     db:
         image: mariadb:10.5
         environment:
