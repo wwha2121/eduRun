@@ -1,17 +1,19 @@
 require('dotenv').config(); // 환경변수 로드
 const { Sequelize } = require('sequelize');
-
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
-const https = require('https');
 const http = require('http');
+
+const app = express();
+
+// ✅ DB 설정
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'mysql',
     port: process.env.DB_PORT,
 });
-// 라우터
+
+// ✅ 라우터
 const signupRoutes = require('./routes/signupRoutes');
 const loginRoutes = require('./routes/loginRoutes');
 const requestProblemRoutes = require('./routes/requestProblemRoutes');
@@ -20,9 +22,7 @@ const itemRoutes = require('./routes/itemRoutes');
 const getUserInfoRoutes = require('./routes/getUserInfoRoutes');
 const userRankingRoutes = require('./routes/userRankingRoutes');
 
-const app = express();
-
-// ✅ CORS, JSON 처리
+// ✅ 미들웨어
 app.use(cors());
 app.use(express.json());
 
@@ -35,7 +35,7 @@ app.use('/', itemRoutes);
 app.use('/', getUserInfoRoutes);
 app.use('/', userRankingRoutes);
 
-// 기본 라우트
+// ✅ 기본 라우트
 app.get('/', (req, res) => {
     console.log('HTTP 요청 들어옴!');
     res.send('OK');
@@ -47,26 +47,9 @@ sequelize
     .then(() => console.log('✅ DB 연결 성공'))
     .catch((err) => console.error('❌ DB 연결 실패:', err));
 
-// ✅ 환경에 따라 HTTP/HTTPS 분기
-if (process.env.NODE_ENV === 'production') {
-    const options = {
-        key: fs.readFileSync('/etc/letsencrypt/live/edurun.shop/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/edurun.shop/fullchain.pem'),
-    };
+// ✅ HTTP 서버 실행 (3000 포트)
+const PORT = 3000;
 
-    // ✅ HTTPS 서버 실행 (443)
-    https.createServer(options, app).listen(443, () => {
-        console.log('✅ [PROD] HTTPS 서버 실행 중 (443)');
-    });
-
-    // ✅ HTTP → HTTPS 리디렉션 (80)
-    http.createServer((req, res) => {
-        res.writeHead(301, { Location: 'https://' + req.headers.host + req.url });
-        res.end();
-    }).listen(80);
-} else {
-    // ✅ 개발 환경에서는 HTTP만 사용 (3000)
-    http.createServer(app).listen(3000, () => {
-        console.log('✅ [DEV] 개발용 HTTP 서버 실행 중 (3000)');
-    });
-}
+http.createServer(app).listen(PORT, () => {
+    console.log(`✅ [서버 실행 중] http://localhost:${PORT}`);
+});
