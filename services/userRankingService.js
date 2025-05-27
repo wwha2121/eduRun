@@ -1,4 +1,4 @@
-const userRankingRepository = require('../repositories/rankingUserService');
+const userRankingRepository = require('../repositories/userRankingRepository');
 
 exports.userRanking = async (req, res) => {
     const userRanking = await userRankingRepository.userRanking();

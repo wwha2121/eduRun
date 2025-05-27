@@ -18,6 +18,7 @@ const requestProblemRoutes = require('./routes/requestProblemRoutes');
 const answerProblemRoutes = require('./routes/answerProblemRoutes');
 const itemRoutes = require('./routes/itemRoutes');
 const getUserInfoRoutes = require('./routes/getUserInfoRoutes');
+const userRankingRoutes = require('./routes/userRankingRoutes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/', requestProblemRoutes);
 app.use('/', answerProblemRoutes);
 app.use('/', itemRoutes);
 app.use('/', getUserInfoRoutes);
+app.use('/', userRankingRoutes);
 
 // 기본 라우트
 app.get('/', (req, res) => {

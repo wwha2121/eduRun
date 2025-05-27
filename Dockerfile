@@ -15,4 +15,7 @@ RUN chmod +x wait-for-it.sh
 EXPOSE 3000
 
 # ✅ bash로 실행!
-CMD ["bash", "./wait-for-it.sh", "db:3306", "--", "node", "app.js"]
+# CMD ["bash", "./wait-for-it.sh", "db:3306", "--", "node", "app.js"]
+CMD ["bash", "./wait-for-it.sh", "db:3306", "--", "npm", "run", "dev"]
+
+
