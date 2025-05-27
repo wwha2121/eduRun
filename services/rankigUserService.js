@@ -1,8 +1,7 @@
 const userRankingRepository = require('../repositories/rankingUserService');
 
-exports.userRanking = async () => {
-  
-  const userRanking = userRankingRepository.userRanking();
+exports.userRanking = async (req, res) => {
+    const userRanking = await userRankingRepository.userRanking();
 
-  return await userRanking;
+    res.status(200).send(userRanking);
 };
