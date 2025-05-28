@@ -15,7 +15,8 @@ exports.userTenRanking = async () => {
             userRank: index + 1,
             totalexp: user.exp,    
             level: (user.exp-user.exp%100)/100,
-            exp: user.exp- ((user.exp-user.exp%100)/100)*100// 선택사항: exp도 함께 응답
+            exp: user.exp- ((user.exp-user.exp%100)/100)*100,// 선택사항: exp도 함께 응답
+            money: user.money
         };
     });
 
