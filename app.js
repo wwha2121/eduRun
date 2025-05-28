@@ -21,6 +21,7 @@ const answerProblemRoutes = require('./routes/answerProblemRoutes');
 const itemRoutes = require('./routes/itemRoutes');
 const getUserInfoRoutes = require('./routes/getUserInfoRoutes');
 const userRankingRoutes = require('./routes/userRankingRoutes');
+const userItemRoutes = require('./routes/userItemRoutes');
 
 // ✅ 미들웨어
 app.use(cors());
@@ -34,6 +35,8 @@ app.use('/', answerProblemRoutes);
 app.use('/', itemRoutes);
 app.use('/', getUserInfoRoutes);
 app.use('/', userRankingRoutes);
+
+app.use('/',userItemRoutes);
 
 // ✅ 기본 라우트
 app.get('/', (req, res) => {

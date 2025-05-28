@@ -1,11 +1,11 @@
 const userRankingService = require('../services/userRankingService');
 
-exports.getUserRanking = async (res) => {
+exports.getUserRanking = async (req, res) => {
     try {
-        const userRanking = userRankingService.userRanking;
-
-        res.status(200).json(userRanking);
+        userRanking = await userRankingService.userTenRanking(); // ✅
+        
+        return res.status(200).json(userRanking);
     } catch (error) {
-        res.status(500).json({ error: '서버 오류', details: error.message });
+        return res.status(500).json({ error: '서버 오류', details: error.message });
     }
 };

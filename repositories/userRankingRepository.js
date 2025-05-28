@@ -1,3 +1,4 @@
+// repositories/userRankingRepository.js
 const User = require('../models/userModel');
 
 const userRankingRepository = {
